@@ -280,19 +280,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchChatGPTResponse(conversationHistory) {
     try {
-        const response = await fetch('chatgpt.php', {
+        const response = await fetch('/api/openai', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ messages: conversationHistory }),
+            body: JSON.stringify({ conversationHistory }), // Send your conversation history
         });
 
         const data = await response.json();
+
         if (data.error) {
             console.error('Error from API:', data.error);
             return 'Sorry, there was an error.';
         }
 
-        return data.choices[0].message.content.trim();
+        return data.choices[0].message.content.trim(); // Adjust based on your response structure
     } catch (error) {
         console.error('Error fetching ChatGPT response:', error);
         return 'Sorry, there was an error processing your request.';

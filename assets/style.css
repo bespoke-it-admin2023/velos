@@ -5,6 +5,13 @@
     font-family: 'VT323', monospace;
 }
 
+@font-face {
+    font-family: 'VT323';
+    src: url('./assets/VT323-Regular.ttf') format('truetype'); /* Adjust the path as necessary */
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
 	font-family: 'VT323', monospace;
 	overflow: hidden;

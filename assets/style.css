@@ -302,7 +302,7 @@ span.green{
 
 .video_bg {
     position: absolute; /* Position the video absolutely */
-    top: 14%;
+    top: 12%;
     left: 0;
     width: 100%;  /* Cover the entire width */
     height: 80%; /* Cover the entire height */

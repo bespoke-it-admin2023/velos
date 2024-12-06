@@ -225,9 +225,15 @@ async function fetchChatGPTResponse(conversationHistory) {
     try {
         const response = await fetch('https://next-velos-actions.vercel.app/api/openai', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ conversationHistory }), // Send your conversation history
+            headers: { 
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify({ messages: conversationHistory }), // Send messages
         });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         const data = await response.json();
 
@@ -236,7 +242,7 @@ async function fetchChatGPTResponse(conversationHistory) {
             return 'Sorry, there was an error.';
         }
 
-        return data.choices[0].message.content.trim(); // Adjust based on your response structure
+        return data.choices[0].message.content.trim(); // Access the response content correctly
     } catch (error) {
         console.error('Error fetching ChatGPT response:', error);
         return 'Sorry, there was an error processing your request.';
